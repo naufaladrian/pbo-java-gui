@@ -6,7 +6,7 @@ package com.mycompany.penjualan;
 
 /**
  *
- * @author LENOVO
+ * @author M Naufal Adrian Pratama Putra (A11.2022.14188)
  */
 public class PENJUALAN {
 
