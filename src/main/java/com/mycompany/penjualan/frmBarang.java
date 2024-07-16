@@ -26,7 +26,7 @@ public class frmBarang extends javax.swing.JFrame {
     String sSatuan;
     Boolean edit = false;
     private Object[][] dataTable = null;
-    private String[] header = {"Kode", "Nama Barang", "Satuan", "Harga", "Stok", "Stok Min"};
+    private String[] header = {"Kode", "Nama Barang", "Satuan", "Harga Jual","Harga Beli", "Stok", "Stok Min"};
 
     /**
      * Creates new form frmBarang
@@ -47,9 +47,11 @@ public class frmBarang extends javax.swing.JFrame {
         cmbSatuan.setSelectedItem((String) tblBrg.getValueAt(row, 2));
         String harga = Double.toString((Double) tblBrg.getValueAt(row, 3));
         txtHarga.setText(harga);
-        String stok = Integer.toString((Integer) tblBrg.getValueAt(row, 4));
+        String hargaBeli = Double.toString((Double) tblBrg.getValueAt(row, 4));
+        txtHargaBeli.setText(hargaBeli);
+        String stok = Integer.toString((Integer) tblBrg.getValueAt(row, 5));
         txtStok.setText(stok);
-        String stokmin = Integer.toString((Integer) tblBrg.getValueAt(row, 5));
+        String stokmin = Integer.toString((Integer) tblBrg.getValueAt(row, 6));
         txtStokMin.setText(stokmin);
     }
 
@@ -86,8 +88,9 @@ public class frmBarang extends javax.swing.JFrame {
                 dataTable[x][1] = RsBrg.getString("nm_barang");
                 dataTable[x][2] = RsBrg.getString("satuan");
                 dataTable[x][3] = RsBrg.getDouble("harga");
-                dataTable[x][4] = RsBrg.getInt("stok");
-                dataTable[x][5] = RsBrg.getInt("stok_min");
+                dataTable[x][4] = RsBrg.getDouble("harga_beli");
+                dataTable[x][5] = RsBrg.getInt("stok");
+                dataTable[x][6] = RsBrg.getInt("stok_min");
                 x++;
             }
 
@@ -105,6 +108,7 @@ public class frmBarang extends javax.swing.JFrame {
         txtNama.setText("");
         cmbSatuan.setSelectedIndex(0);
         txtHarga.setText("");
+        txtHargaBeli.setText("");
         txtStok.setText("");
         txtStokMin.setText("");
     }
@@ -116,6 +120,7 @@ public class frmBarang extends javax.swing.JFrame {
         //cmbSatuan.setEditable(x);
         cmbSatuan.setEnabled(x);
         txtHarga.setEditable(x);
+        txtHargaBeli.setEditable(x);
         txtStok.setEditable(x);
         txtStokMin.setEditable(x);
     }
@@ -162,6 +167,8 @@ public class frmBarang extends javax.swing.JFrame {
         cmdHapus = new javax.swing.JButton();
         cmdBatal = new javax.swing.JButton();
         cmdKeluar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txtHargaBeli = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -193,7 +200,7 @@ public class frmBarang extends javax.swing.JFrame {
         jLabel5.setText("Satuan");
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel6.setText("Harga");
+        jLabel6.setText("Harga Jual");
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel7.setText("Stok Minimal");
@@ -265,6 +272,9 @@ public class frmBarang extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel8.setText("Harga Beli");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -303,6 +313,10 @@ public class frmBarang extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtHargaBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(cmdTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(cmdSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,6 +352,10 @@ public class frmBarang extends javax.swing.JFrame {
                     .addComponent(cmbSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtHargaBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -348,7 +366,7 @@ public class frmBarang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtStokMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(58, 58, 58)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -358,7 +376,7 @@ public class frmBarang extends javax.swing.JFrame {
                     .addComponent(cmdHapus)
                     .addComponent(cmdBatal)
                     .addComponent(cmdKeluar))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
         pack();
@@ -409,18 +427,19 @@ public class frmBarang extends javax.swing.JFrame {
         String tKode = txtKode.getText();
         String tNama = txtNama.getText();
         double hrg = Double.parseDouble(txtHarga.getText());
+        double hrgBeli = Double.parseDouble(txtHargaBeli.getText());
         int stk = Integer.parseInt(txtStok.getText());
         int stkMin = Integer.parseInt(txtStokMin.getText());
 
         try {
             if (edit == true) {
                 stm.executeUpdate("update barang set nm_barang='" + tNama + "',satuan='" + sSatuan + "',"
-                        + "harga=" + hrg + ",stok=" + stk + ",stok_min=" + stkMin + " where kd_barang='" + tKode + "'"
+                        + "harga=" + hrg +",harga_beli="+hrgBeli+ ",stok=" + stk + ",stok_min=" + stkMin + " where kd_barang='" + tKode + "'"
                 );
             } else {
                 stm.executeUpdate(
-                        "INSERT into barang(kd_barang, nm_barang, satuan, harga, stok, stok_min) "
-                        + "VALUES('" + tKode + "','" + tNama + "','" + sSatuan + "'," + hrg + "," + stk + "," + stkMin + ")"
+                        "INSERT into barang(kd_barang, nm_barang, satuan, harga,harga_beli, stok, stok_min) "
+                        + "VALUES('" + tKode + "','" + tNama + "','" + sSatuan + "'," + hrg + ","+hrgBeli+"," + stk + "," + stkMin + ")"
                 );
             }
 
@@ -495,11 +514,13 @@ public class frmBarang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblBrg;
     private javax.swing.JTextField txtHarga;
+    private javax.swing.JTextField txtHargaBeli;
     private javax.swing.JTextField txtKode;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtStok;

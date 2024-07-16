@@ -8,14 +8,35 @@ package com.mycompany.penjualan;
  *
  * @author LENOVO
  */
-public class FormMenu extends javax.swing.JFrame {
+public class frmMenu extends javax.swing.JFrame {
+    private String role;
 
     /**
      * Creates new form FormMenu
      */
-    public FormMenu() {
+    public frmMenu() {
         initComponents();
+        this.role = role;
+        setAccessBasedOnRole();
     }
+    
+    public frmMenu(String role) {
+        initComponents();
+        this.role = role;
+        setAccessBasedOnRole();
+    }
+    
+    private void setAccessBasedOnRole() {
+    if (role.equals("admin")) {
+        // Tampilkan semua menu
+        mnMaster.setEnabled(true);
+        mnTransaksi.setEnabled(true);
+    } else if (role.equals("user")) {
+        // Hanya tampilkan menu transaksi
+        mnMaster.setEnabled(false);
+        mnTransaksi.setEnabled(true);
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -106,7 +127,7 @@ public class FormMenu extends javax.swing.JFrame {
 
     private void mnTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnTransaksiMouseClicked
         // TODO add your handling code here:
-        //new frmTransaksi().setVisible(true);
+        new frmTransaksi().setVisible(true);
 
     }//GEN-LAST:event_mnTransaksiMouseClicked
 
@@ -127,20 +148,21 @@ public class FormMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormMenu().setVisible(true);
+                new frmMenu().setVisible(true);
             }
         });
     }
